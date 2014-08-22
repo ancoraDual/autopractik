@@ -1,0 +1,312 @@
+{% extends "master.html" %}
+
+{% block content %}
+
+<div class="list">
+
+		<div class="top-list">
+			
+		<h1 class="row">
+			<span class="icon icon-calendar"></span>
+			<strong>Configura</strong> los horarios 
+
+			<span class="pull-right"> <strong>45</strong> elementos</span>
+		</h1>			
+
+		</div>
+
+		<div class="row filter">
+
+			<select class="form-control">
+				<option value="-1">por calendario ..</option>
+				{% for calendario in calendarios %}
+					<option value="{{calendario.id}}">{{calendario.nombre}}</option>	
+				{% endfor %}							
+			</select>
+
+			<select class="form-control">
+				<option value="-1">por vehículo ...</option>
+				{% for tipovehiculo in tiposvehiculo %}
+					<option value="{{tipovehiculo.id}}">{{tipovehiculo.nombre}}</option>	
+				{% endfor %}							
+			</select>
+
+			<div class="btn btn-primary">
+				<span class="icon-checkmark"></span>
+			</div>
+
+
+			<div class="btn pull-right actions">
+				<span class="icon-arrow-down"></span>
+			</div>
+
+			<div class="btn btn-primary pull-right">
+				<span class="icon-search"></span>
+			</div>
+
+			<input type="text" class="form-control input-search pull-right" placeholder="buscar por ...">
+
+		</div>
+
+		<div class="row datos">
+			<table id="tabla" class="table table-striped table-bordered">
+			  <thead>
+			    <tr>
+			      <th width="200px">Calendario</th>
+			      <th width="130px">Vehículo</th>
+			      <th width="90px">Horario</th>
+			      <th>L</th>
+			      <th>M</th>
+			      <th>Mx</th>
+			      <th>J</th>
+			      <th>V</th>
+			      <th>S</th>
+			      <th>D</th>
+			      <th class="actions">
+						<span class="icon-cog"></span>
+			      </th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			  	{% for horario in horarios %}
+				<tr id="horario_{{horario.id}}" data-id="{{horario.id}}" class="row-table">
+			  		<td>{{horario.calendario.nombre}}</td>
+			  		<td>{{horario.tipovehiculo.nombre}}</td>
+			  		<td>{{horario.hora}}</td>
+			  		<td>{{horario.importe_lunes}} &euro;</td>
+			  		<td>{{horario.importe_martes}} &euro;</td>
+			  		<td>{{horario.importe_miercoles}} &euro;</td>
+			  		<td>{{horario.importe_jueves}} &euro;</td>
+			  		<td>{{horario.importe_viernes}} &euro;</td>
+			  		<td>{{horario.importe_sabado}} &euro;</td>
+			  		<td>{{horario.importe_domingo}} &euro;</td>
+                    <td class="actions">
+						<span class="icon-arrow-down"></span>
+						<div id="AccionBox_horario_{{horario.id}}" class="accionesBox">
+							<span class="triangulo">&nbsp;</span>
+							<ul>
+								<li class="edit icon-truck">   Editar</li>
+								<li class="send icon-search">   Enviar mail</li>
+								<li class="remove icon-cog">   Suprimir</li>
+								<li class="ocultar icon-arrow-up">   Ocultar</li>
+							</ul>
+						</div>
+				    </td>
+			  	</tr>
+			  	{% endfor %}
+
+
+			  	<form method="POST">
+			    {% csrf_token %}
+
+				<input type="hidden" name="autoescuela" id="autoescuela" value="2">
+			  	
+			  	<tr class="table-tool">
+		    		<td width="200px">
+						<select name="calendario" class="form-control" id="calendario">
+							<option value="-1"> Seleccionar</option>
+							{% for calendario in calendarios %}
+								<option value="{{calendario.id}}">{{calendario.nombre}}</option>	
+							{% endfor %}							
+						</select>
+		    		</td>
+
+		    		<td width="130px">
+						<select name="tipovehiculo" class="form-control" id="tipovehiculo">
+							
+							<option value="-1"> Seleccionar</option>
+
+							{% for tipo in tiposvehiculo %}
+								<option value="{{tipo.id}}">{{tipo.nombre}}</option>	
+							{% endfor %}							
+						</select>
+		    		</td>		    		
+		    		
+		    		<td width="90px">
+		    			<input type="text" class="form-control" placeholder="00:00" id="hora" name="hora">
+		    		</td>
+		    		
+		    				    		
+				    <td>
+						<div class="form-group">
+							<span class="left-icon icon-checkmark select"></span>
+							<input type="text" name="importe_lunes" id="importe_lunes" class="form-control left-spacing" placeholder="importe lunes" value="">
+						</div> 	
+				    </td>
+				    <td>
+						<div class="form-group">
+							<span class="left-icon icon-checkmark select"></span>
+							<input type="text" name="importe_martes" id="importe_martes" class="form-control left-spacing" placeholder="importe martes" value="">
+							
+						</div> 	
+				    </td>
+				    <td>
+						<div class="form-group">
+							<span class="left-icon icon-checkmark select"></span>
+							<input type="text" name="importe_miercoles" id="importe_miercoles" class="form-control left-spacing" placeholder="importe miércoles" value="">
+							
+						</div> 	
+				    </td>
+				    <td>
+						<div class="form-group">
+							<span class="left-icon icon-checkmark select"></span>
+							<input type="text" name="importe_jueves" id="importe_jueves" class="form-control left-spacing" placeholder="importe jueves" value="">
+							
+						</div> 	
+				    </td>
+				    <td>
+						<div class="form-group">
+							<span class="left-icon icon-checkmark select"></span>
+							<input type="text" name="importe_viernes" id="importe_viernes" class="form-control left-spacing" placeholder="importe viernes" value="">
+							
+						</div> 	
+				    </td>
+				    <td>
+						<div class="form-group">
+							<span class="left-icon icon-checkmark select"></span>
+							<input type="text" name="importe_sabado" id="importe_sabado" class="form-control left-spacing" placeholder="importe sábado" value="">
+							
+						</div> 	
+				    </td>				    				    				    	
+				    <td>
+						<div class="form-group">
+							<span class="left-icon icon-checkmark select"></span>
+							<input type="text" name="importe_domingo" id="importe_domingo" class="form-control left-spacing" placeholder="importe domingo" value="">
+							
+						</div> 	
+				    </td>				    
+				    <td class="event">
+				    	<span class="icon-plus"></span>
+				    </td>
+				   </tr>
+				
+				</form>
+
+			  </tbody>
+			</table>			
+		</div>
+</div>
+
+		<script>
+		$(document).ready(function() {
+    		
+			$( ".form-group span" ).click(function() {	
+				
+				if($(this).hasClass("select"))
+				{
+					$(this).removeClass("select")
+					$(this).addClass("selected")
+				}
+				else
+				{
+					$(this).addClass("select")
+					$(this).removeClass("selected")
+				}
+
+			});
+			
+			$( ".form-group input" ).change(function() {	
+				
+				value = $(this).val();
+
+				if(value != "")
+				{
+					$(this).parent().find("span").removeClass("select")
+					$(this).parent().find("span").addClass("selected")
+				}
+				else
+				{
+					$(this).parent().find("span").addClass("select")
+					$(this).parent().find("span").removeClass("selected")
+				}
+
+			});
+
+
+
+		} );
+		</script>
+
+		<script>
+		$(document).ready(function() {
+
+			$( ".row-table td" ).click(function() {
+				
+				if( ! $(this).hasClass("actions") )
+				{
+					var id = $(this).parent().attr("id");
+					$.ancoraDual.m_despliegaAcciones(id);
+				}
+			});
+
+			
+			$( ".ocultar" ).click(function() {				
+				var id = $(this).parent("tr").parent().attr("id");
+				$.ancoraDual.m_despliegaAcciones(id);
+			});
+
+
+			$( ".add-btn" ).click(function() {
+
+				// validando 
+				
+				calendario = $("#calendario").val();
+				if(calendario == "-1")
+				{
+					alert("Por favor, selecciona el calendario")
+					$("#calendario").focus();
+					return;
+				}
+
+				tipovehiculo = $("#tipovehiculo").val();
+				if(tipovehiculo == "-1")
+				{
+					alert("Por favor, selecciona el tipo de vehiculo")
+					$("#tipovehiculo").focus();
+					return;
+				}
+
+				hora = $("#hora").val();
+				if(hora == "")
+				{
+					alert("Por favor, introduce la hora disponible para practicas")
+					$("#hora").focus();
+					return;
+				}
+
+				importe_lunes = $("#importe_lunes").val();
+				if(importe_lunes == "")
+					$("#importe_lunes").val("0");
+
+				importe_martes = $("#importe_martes").val();
+				if(importe_martes == "")
+					$("#importe_martes").val("0");
+
+				importe_miercoles = $("#importe_miercoles").val();
+				if(importe_miercoles == "")
+					$("#importe_miercoles").val("0");
+
+				importe_jueves = $("#importe_jueves").val();
+				if(importe_jueves == "")
+					$("#importe_jueves").val("0");	
+
+				importe_viernes = $("#importe_viernes").val();
+				if(importe_viernes == "")
+					$("#importe_viernes").val("0");	
+
+				importe_sabado = $("#importe_sabado").val();
+				if(importe_sabado == "")
+					$("#importe_sabado").val("0");	
+
+				importe_domingo = $("#importe_domingo").val();
+				if(importe_domingo == "")
+					$("#importe_domingo").val("0");																								
+
+				guardarFicha("horarios", 0);			
+			});			
+
+
+		} );
+		</script>		
+
+{% endblock %}

@@ -1,0 +1,327 @@
+
+
+/* = Mixins
+------------- */
+
+shadow-exterior(w, color)
+	box-shadow 0px 0px w color
+	-webkit-box-shadow 0px 0px w color
+	-moz-box-shadow 0px 0px w color
+
+/* = Variables
+---------------- */
+
+colorfondo-herramientas = #30343e
+color-rojo-corporativo = #da3635
+color-gris-suave = #efefef
+color-gris-oscuro = #ccc
+color_hover = #05B2D2
+color_wrapper = #fff
+color_content = #E7E7E7
+
+altura_input = 2.5em
+
+zindex-n1 = 9000
+zindex-n2 = 8000
+zindex-n3 = 7000
+zindex-n4 = 6000
+
+/* = Imports 
+--------------- */
+
+@import "fonts.css"
+@import "tables.styl"
+@import "popup.styl"
+
+/* = Base 
+----------*/
+
+h1, h2, h3, h4, p, input, select
+	
+	padding 0
+	margin 0
+
+h1
+		
+	font-size 1.5em
+h2
+	font-size 1.3em
+
+body, ul, li
+	
+	margin 0
+	padding 0	
+
+input, select
+	height altura-input
+	padding 0 .3em
+
+a
+	text-decoration none
+	&:hover
+		text-decoration none
+
+
+/* = Custom foundation
+----------------------- */
+
+.tooltip
+	background color_hover
+	color white
+	border-bottom 1px solid colorfondo-herramientas
+	
+	.nub
+		border-color transparent transparent color_hover transparent
+
+
+.row
+	max-width 100%
+	margin 0
+
+/* = Custom boostratp
+------------------------ */
+
+.btn-primary
+	background colorfondo-herramientas
+	border 0
+
+	.icon 
+		color color_hover
+		margin 0 .2em	
+	
+	&:hover
+		background color_hover
+		color white
+
+		.icon
+			color white
+
+
+/* = Contenidos
+------------------ */
+
+body
+
+	font-size 16px
+	position relative
+	font-family 'Open Sans', sans-serif
+	color colorfondo-herramientas
+
+
+header
+	
+	width 100%
+	height 50px
+	background colorfondo-herramientas
+
+	.menu
+		
+		display block
+		cursor pointer
+		width 60px
+
+		span 
+			text-align center
+			color color_hover
+			font-size 1.5em
+			line-height 50px
+
+			&:hover
+				color white	
+
+	.logout
+
+		cursor pointer
+		display block
+		text-align right
+
+		.user
+			color color-gris-suave
+			font-size 1em
+			margin-right 1em
+
+		.icon 
+			color color_hover
+			font-size 1.5em
+			line-height 50px
+
+		.out, .config
+			
+			border-left 1px solid color_hover
+			padding-left .6em
+			margin-left .4em
+
+		.user, .icon
+			
+			&:hover
+				color white
+	.logo
+		
+				
+		span 
+			display inline-block
+			color color_hover
+			font-size 1.4em
+			margin 0 .3em
+
+	
+		h1
+			line-height 50px
+			display inline-block
+			color color-gris-suave
+			font-weight bold 700
+
+
+.wrapper
+	
+	height auto
+	overflow hidden
+	background color_wrapper
+
+
+	.menu
+		
+		margin 0 !important
+		padding 0 !important
+		width 14%
+		float left
+
+
+		ul
+			list-style none
+			display block
+			margin-top 2px
+		
+			li
+				
+				border-bottom 1px solid #efefef
+				padding .2em 1.4em
+				font-weight light 500
+				height 50px
+				overflow hidden
+
+				a
+					color colorfondo-herramientas
+					display block
+			
+
+				&:hover, &.active
+					
+					border-right 8px solid color_hover
+					cursor pointer
+					background colorfondo-herramientas
+					color white
+					
+					.icon
+						 color white
+
+					.data
+						color white
+
+					a 
+						color color_hover
+				.icon
+					font-size 1.5em
+					margin-right .5em
+					color colorfondo-herramientas
+					line-height 40px
+
+				.data
+					line-height 40px
+
+
+
+
+.content
+	
+	min-height 800px
+	overflow hidden
+	border-left 1px solid color-gris-suave
+	width 86%
+	float left
+	background color_content
+
+
+.list	
+	
+	width 95%
+	margin auto
+
+	.top-list
+		
+		width 100%
+		margin-bottom 1em
+
+		h1
+			font-size 1.5em
+			letter-spacing .001em
+			word-spacing .0em
+			padding .8em .5em
+
+	.filter
+		
+		height 40px
+		margin-top 1em
+		margin-bottom 1em
+
+		input, select
+			display inline-block
+			width 200px
+			margin 0 .3em 0 0 
+			height 100%
+		
+		.pull-right 
+			margin 0 0 0 .3em !important
+			&.actions
+				background color_hover
+				color white
+				margin-left 1em !important
+		.btn
+			
+			display inline-block
+			width 38px
+			cursor pointer
+			height 39px
+			text-align center
+
+			span
+				font-size 1.1em
+				line-height 30px
+				text-align center
+
+	.datos
+
+		table
+			width 100%
+
+			td
+				height 28px
+				line-height 28px
+			th
+				background #ddd
+
+				span
+					font-size 1.2em
+					display block
+					text-align center
+
+			.select
+				span 
+					color colorfondo-herramientas
+
+			td
+				span
+					font-size 1.2em
+					display block
+					text-align center
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,105 @@
+{% extends "estructura/popup.html" %}
+
+{% block popup_class %} small {% endblock%}
+
+{% block popup_id %}
+	popup_{{saldo.id}}
+{% endblock %}
+
+{% block title-popup %} 
+
+	<span class="icon-coin"></span> 
+	{% if saldo.id == None %} 
+		Añadir saldo 
+	{% else %}
+		Editar saldo
+	{% endif %}
+
+{% endblock%}
+
+{% block content-popup %}
+
+<div class="table">
+	
+	<div class="row">
+		
+		<div class="large-12 columns">
+
+			<form method="POST">
+			    {% csrf_token %}
+			
+			<input type="hidden" name="autoescuela" id="autoescuela" value="2">
+			
+			<table class="table">
+			<tbody>	
+				<tr>
+					<td>Alumno:</td>
+					<td>
+						<select name="alumno" class="form-control" id="alumno">
+						
+							<option value="-1">Seleccionar</option>						
+							{% for alumno in alumnos %}
+
+								{% if saldo.alumno.id == alumno.id %}
+									<option value="{{alumno.id}}" selected>{{alumno.apellidos}}, {{alumno.nombre}}</option>
+								{% else %}
+									<option value="{{alumno.id}}">{{alumno.apellidos}}, {{alumno.nombre}}</option>
+								{% endif%}
+
+							{% endfor %}
+						
+						</select>
+					</td>
+				</tr>
+
+				<tr>
+					<td>Importe:</td>
+					<td>
+						<input type="text" class="form-control" name="importe" id="importe" placeholder="Importe" value="{{saldo.importe}}">
+					</td>
+				</tr>
+					<td>Estado:</td>
+					<td>
+						<select name="estado" class="form-control" id="estado">
+						
+							<option value="-1">Seleccionar</option>						
+							{% for estado in estados %}
+
+								{% if saldo.estado.id == estado.id %}
+									<option value="{{estado.id}}" selected>{{estado.nombre}}</option>
+								{% else %}
+									<option value="{{estado.id}}">{{estado.nombre}}</option>
+								{% endif%}
+
+							{% endfor %}
+						
+						</select>
+					</td>
+				</tr>				
+				<tr>
+					<td>Concepto</td>
+					<td>
+						<textarea class="form-control" name="concepto" id="concepto" rows="5">{{saldo.concepto}}</textarea>
+					</td>
+				</tr>				
+			</tbody>
+			</table>
+
+			</form>
+		</div>
+	</div>
+</div>
+
+<script>
+
+		$(document).ready(function() {
+	
+			$( ".save-btn" ).click(function() {				
+  				var id = $(this).parents(".row-table").data("id");
+				guardarFicha("saldos",  "{{ saldo.id }}");	
+			});
+		});
+
+</script>
+
+{% endblock %}

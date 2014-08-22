@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+
+{% load static from staticfiles %}
+{% load tags %}
+
+<head>
+	<meta charset="UTF-8">
+	<title>Dashboard Bienvenido {{titular}}</title>
+
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+
+	<!-- jquery -->
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	
+	<!-- jquery ui -->
+	<script type="text/javascript" src="{% static "vendor/jquery-ui/jquery-ui.js" %}"></script>
+
+	<!-- foundation -->
+	<link rel="stylesheet" type="text/css" href="{% static "vendor/foundation/foundation.css" %}">
+	<script type="text/javascript" src="{% static "vendor/foundation/vendor/modernizr.js" %}"></script>
+	<script type="text/javascript" src="{% static "vendor/foundation/foundation.min.js" %}"></script>
+
+	<!-- Boostrap -->
+	<link rel="stylesheet" type="text/css" href="{% static "vendor/bootstrap/bootstrap.css" %}">
+
+	<!-- Datetables -->
+	<script type="text/javascript" src="{% static "vendor/datatables/jquery.dataTables.min.js" %}"></script>
+
+	<!-- ancoradual-->
+
+	<script type="text/javascript" src="{% static "vendor/ancoradual/ancoradual.js" %}"></script>
+	<script type="text/javascript" src="{% static "vendor/ancoradual/ancoradual.popup.js" %}"></script>
+	
+	<!-- self-->
+
+	<link rel="stylesheet" type="text/css" href="{% static "css/autoescuelas.css" %}">
+	<script type="text/javascript" src="{% static "js/autoescuelas.js" %}"></script>
+	
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300,600' rel='stylesheet' type='text/css'>
+
+	{% block header %}{% endblock %}
+
+<body>
+
+<script>
+
+$( document ).ready(function() {
+
+	var abierto = true;
+
+	$( "#menu-btn" ).click(function() {
+		
+		if(abierto)
+		{
+			$("#menu-lateral").css("width", "4%");
+			$(".content").css("width", "96%");
+			abierto = false;
+		}
+		else
+		{
+			$("#menu-lateral").css("width", "12%");
+			$(".content").css("width", "88%");
+			abierto = true;
+
+		}
+	});
+
+});
+
+(function($){
+    $.fn.extend({
+        center: function () {
+            return this.each(function() {
+                var top = ($(window).height() - $(this).outerHeight()) / 2;
+                var left = ($(window).width() - $(this).outerWidth()) / 2;
+                $(this).css({position:'absolute', margin:0, top: (top > 0 ? top : 0)+'px', left: (left > 0 ? left : 0)+'px'});
+            });
+        }
+    }); 
+})(jQuery);
+
+</script>
+
+
+<header class="row">
+
+	<div id="menu-btn" class="large-1 columns menu">
+		<span class="icon-menu right"></span>	
+	</div>
+
+	<div class="large-2 columns logo">
+		<h1 class="show-for-large-only">autopractik</h1>
+		<span class="icon-bullhorn"></span>
+
+	</div>
+
+	<div class="large-9 columns logout right">
+		<span class="user">Hola sergio</span>	
+		<a  href="/autoescuelas/perfil/" data-tooltip class="icon icon-user" title="Editar mi perfil"></a>	
+		<a href="/autoescuelas/config/" data-tooltip class="icon config icon-cog" title="Configuración"></a>	
+		<a href="/autoescuelas/logout/" data-tooltip class="icon out icon-switch" title="Salir"></a>	
+	</div>
+</header>	
+
+<div class="row wrapper">
+
+	<section id="menu-lateral" class="menu">
+
+		<ul>
+ 			
+			{% url "autoescuelas_dashboard" as dash %}
+
+ 			<li class="{% active request dash %}">
+				
+				<a href="{% url "autoescuelas_dashboard" %}" class="data">
+					<span class="icon icon-bars"></span>
+					Inicio
+				</a>
+			</li>
+
+			{% url "practicas_list" as practicas_lst %}
+			
+			<li class="{% active request practicas_lst %}">
+				<a href="{% url "practicas_list" %}" class="data">
+					<span class="icon icon-calendar"></span>
+					Prácticas
+				</a>
+			</li>
+
+			{% url "vehiculos_list" as vehiculos_lst %}
+
+			<li class="{% active request vehiculos_lst %}">				
+				<a href="{% url "vehiculos_list" %}" class="data">
+					<span class="icon icon-truck"></span>
+					Vehículos
+				</a>
+			</li>
+			
+			{% url "alumnos_list" as alumnos_lst %}
+
+			<li class="{% active request alumnos_lst %}">
+				<a href="{% url "alumnos_list" %}" class="data">
+					<span class="icon icon-users"></span>
+					Alumnos
+				</a>
+			</li>
+
+			{% url "profesores_list" as profesores_lst %}
+			
+			<li class="{% active request profesores_lst %}">
+				<a href="{% url "profesores_list" %}" class="data">
+					<span class="icon icon-users"></span>
+					Profesores
+				</a>
+			</li>
+
+
+			{% url "saldos_list" as saldos_lst %}
+			
+			<li class="{% active request saldos_lst %}">
+				<a href="{% url "saldos_list" %}" class="data">
+					<span class="icon icon-coin"></span>
+					Saldo
+				</a>
+			</li>
+
+			{% url "autoescuelas_perfil" as perfil %}
+			
+			<li class="{% active request perfil %}">
+				<a href="{% url "autoescuelas_perfil" %}" class="data">
+					<span class="icon icon-user"></span>
+					Mi perfil
+				</a>
+			</li> 
+
+			{% url "horarios_list" as horarios_lst %}
+			
+			<li class="{% active request horarios_lst %}">
+				<a href="{% url "horarios_list" %}" class="data">
+					<span class="icon icon-cog"></span>
+					Horarios
+				</a>
+			</li> 
+
+		</ul>
+		
+	</section>
+
+	<section class="content">
+		{% block content %}{% endblock %}
+	</section>	
+
+</div>
+
+	
+
+
+<section>
+	
+</section>
+
+<script>
+$(document).foundation();
+</script>
+
+</body>
+</html>

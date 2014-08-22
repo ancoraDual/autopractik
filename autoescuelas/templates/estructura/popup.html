@@ -1,0 +1,61 @@
+
+<div id="{% block popup_id %}{% endblock %}" class="popup {% block popup_class %}{% endblock%} new-popup">
+
+	<div class="header-popup">
+		<span class="title">{% block title-popup %}{% endblock %}</span>
+		<span class="close-btn">
+			<span class="icon icon-close"></span>
+		</span>
+	</div>
+
+	<div class="content-popup">
+		{% block content-popup %}
+		{% endblock %}
+	</div>
+
+	<div class="footer-popup">
+
+		<div class="pull-left">
+			<div class="btn btn-primary">         
+				<span class="icon icon-close"></span>
+				<span class="text">Cancelar</span>
+			</div> 
+		</div> 
+		
+		<div class="pull-right">
+			<div class="save-btn btn btn-primary">         
+				<span class="icon icon-download"></span>
+				<span class="text">guardar</span>
+			</div> 
+			<!--    
+			<div class="save-btn btn btn-primary">         
+				<span class="icon icon-download"></span>
+				<span class="text">guardar y salir</span>
+			</div>
+			-->
+		</div>
+	</div>
+</div>
+
+<script>
+	
+	$(document).ready(function() {
+    		
+		$(".close-btn").click(function() {
+  			$(this).parents(".popup").remove();
+  		});
+
+		$(".popup").click(function() { 			
+  			$(".popup").css("z-index", "8000");
+  			$(this).css("z-index", "9000");
+		});
+
+		$('.popup').draggable({handle: '.header-popup', containment: '.wrapper'});
+
+		var left = ($(window).width() - $(".new-popup").outerWidth()) / 2;
+  		$(".new-popup").css("top", "80px");
+  		$(".new-popup").css("left", left + "px");
+
+	});
+
+</script>

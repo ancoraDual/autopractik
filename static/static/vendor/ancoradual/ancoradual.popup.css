@@ -1,0 +1,75 @@
+/* = Máscara + Popup
+------------------------------------------------------*/
+
+#popUpContenido{position:absolute; top:1%; left:25%; z-index:9000; }
+#mask {position:absolute;left:0;top:0;z-index:901;display:none;width:100%;height:100%;}
+#mask img{margin-left:auto;margin-right:auto;display:block;}
+
+.window{position:absolute;min-width:100px;min-height:100px;display:none;z-index:900;}
+#loading { position:fixed; top:50%; left:50%; z-index:90001; width:60px; height:60px; margin:-30px 0 0 -30px; text-indent:-999em; background:url(../../img/progress.gif) no-repeat center center #000; border-radius:5px;display:none}
+  
+
+/* Panel PopUp ---------------------------------------------------------------------------------------  */
+
+.panel_PopUp{min-width:500px;min-height:50px;overflow:hidden;margin:10px;background-color:#efefef;box-shadow: 0px 0px 10px #acacac;-webkit-box-shadow: 0px 0px 10px #acacac;-moz-box-shadow: 0px 0px 10px #acacac;}
+
+.panel_PopUp > .cabecera{width:100%;overflow:hidden;height:50px; background-color:White;border-bottom: 1px solid #ccc;color:White;}
+.panel_PopUp > .cabecera > .titulo{float:left;margin:15px 0 0 10px;font-size:1.6em;color:#000;font-weight:bold;width:80%}
+.panel_PopUp > .cabecera > .titulo > span{color:#ccc;font-weight:normal;}
+.panel_PopUp > .cabecera > .configure{float:right;margin-top:5px;margin-right:5px;cursor:pointer;}
+.panel_PopUp > .cabecera > .configure > .close{float:left;margin-left:3px;cursor:pointer;display:block;width:16px;height:16px;color:#0064b4;margin:4px 10px 0 0 }
+.panel_PopUp > .cabecera > .collapse{background-color:#f0f0f0;}
+
+.panel_PopUp > .panelPopUp_content{width:100%;float:left;min-height:200px;padding:10px;font-size:1.2em;}
+.panel_PopUp > .panelPopUp_content > .accionCabecera{float:left;padding:5px 5px 5px 0px;background-color:White;width:100%;}
+.panel_PopUp > .panelPopUp_content > .accionCabecera > .accion{float:right;}
+
+.tabTools{padding:5px 0 5px 5px;background-color:White;margin:0;text-align:left}
+.tabTools{padding:5px 0 5px 5px;background-color:White;margin:0;text-align:left}
+
+.panel_PopUp > .panelPopUp_content > .fotoPerfil{float:left;width:100px;min-height:100px;overflow:hidden;margin:10px}
+.panel_PopUp > .panelPopUp_content > .fotoPerfil > .foto{float:left;width:100px;height:100px;background:#ccc}
+.panel_PopUp > .panelPopUp_content > .fotoPerfil > .foto img{width:100px;height:100px;}
+.panel_PopUp > .panelPopUp_content > .fotoPerfil > .editar{float:left;width:100%}
+
+.panel_PopUp > .panelPopUp_footer{width:100%;overflow:hidden;min-height:45px;font-size:1.2em;float:left;background-color:White;border-top: 1px solid #ccc;padding:7px}
+.panel_PopUp > .panelPopUp_footer div{margin:2px 5px 0 5px}
+.panel_PopUp > .panelPopUp_footer span.glyphicon{margin:2px 5px 0 5px}
+
+
+/* Tables */
+.panel_PopUp > .panelPopUp_content table{width:100%;float:left;}
+.panel_PopUp > .panelPopUp_content table table{font-size:0.9em;}
+.panel_PopUp > .panelPopUp_content table > tbody > tr > td{height:30px;padding:10px 0 0 5px;line-height:30px;vertical-align:bottom;}
+.panel_PopUp > .panelPopUp_content table > tbody > tr.bloque{background-color:#efefef;height:25px;padding:8px 0 3px 10px;font-weight:bold;border-bottom:1px solid #fff}
+
+/* Galery */
+
+ul.items{}
+ul.items > li{width:220;min-height:75px;overflow:hidden;float:left;margin:10px;border:1px #dddddd solid;}
+ul.items > li:hover{border:1px #bbbbbb solid;}
+ul.items > li span{width:100%;display:block;}
+ul.items > li span.foto{ width:220px;height:110px;}
+ul.items > li span.foto img{width:100%;margin:auto auto}
+ul.items > li span.acciones{width:100%;height:30px;float:left;margin-top:5px;background-color:#efefef}
+ul.items > li span.acciones span{margin:8px;display:inline-block;font-size:1.5em;cursor:pointer}
+
+/* Panel interior PopUp */
+.panelContent{}
+.panelContent {width:100%;height:100%;}
+
+/* Menú lateral */
+ul.menuBloques{}
+ul.menuBloques {float:left;width:20%;min-height:550px;overflow:hidden;border-right:1px solid #ccc}
+ul.menuBloques li{line-height:20px;padding:5px;border-bottom:1px solid #ccc;display:block;cursor:pointer}
+ul.menuBloques li:hover{background-color:#0064b4;color:White;cursor:pointer}
+ul.menuBloques li.active, .panel_data ul.menuBloques li:hover{line-height:20px;padding:5px;background-color:#0064b4;color:White;cursor:pointer}
+
+.contenidosBloque{float:left;margin:10px;width:77%;height:100%;display:block;overflow:hidden}
+.contenidosBloque .topTools{overflow:hidden;width:100%;margin-bottom:10px;padding-bottom:5px; border-bottom:1px dashed #ccc;}
+.contenidosBloque .tabs{width:100%;margin:0}
+
+.contenidosBloque .pie{float:left;width:100%;overflow:hidden;height:40px;margin-top:5px}
+
+
+

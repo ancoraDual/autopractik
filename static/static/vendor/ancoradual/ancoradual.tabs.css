@@ -1,0 +1,51 @@
+
+/* = Tabs popUp 
+------------------------------------------------------- */
+
+ul.tabs {
+	margin:0;
+	padding: 0;
+	float: left;
+	list-style: none;
+	height: 30px;
+	width: 100%;
+	border-bottom: 1px solid #ccc;
+}
+
+ul.tabs li {
+	float: left;
+	margin: 0;
+	padding: 0;
+	height: 30px;
+	line-height: 30px;
+	border-left: none;
+	margin-bottom: -1px;
+	overflow: hidden;
+	position: relative;
+	color:#525252;
+	margin-right:3px
+}
+
+ul.tabs li a {text-decoration: none;display: block;padding: 0 20px;border: 1px solid #fff;outline: none;color:#525252;}
+ul.tabs li a:hover {background: #fff;border-bottom: 1px solid #fff;color:#000;}
+ul.tabs li.active, ul.tabs li.active:hover  {background: #efefef;color: #fff;font-weight:bold;margin-top:0px;border-left: 1px solid #ccc;border-top: 1px solid #ccc;border-right: 1px solid #ccc;}
+ul.tabs li a > span {padding: 0 0 0 20px;}
+
+.tab_container {overflow: hidden;clear: both;float: left; width: 100%;background: #efefef;color:#000;border-left: 1px solid #ccc;padding:3px}
+.tab_content {height:100%;padding:5px 0 0 5px}
+.tab_content .tabTools{border-bottom:1px dashed #ccc;overflow:hidden;width:100%;padding:10px 0 10px 10px;background-color:transparent;margin-bottom:10px}
+
+.tab_content .item{float:left;margin-left:5px;margin-top:5px;margin-bottom:15px;padding-bottom:5px;border-bottom:1px dashed #ccc;width:100%}
+.tab_content .item:hover{background-color:#efefef}
+
+.tab_content .item .foto{float:left;margin:5px;width:16%;}
+.tab_content .item .foto img{width:100px; height:100px; border-radius:5px;-moz-border-radius: 5px;-webkit-border-radius: 5px;}
+
+.tab_content .item .video{float:left;margin:5px;width:16%; border-radius:5px;-moz-border-radius: 5px;-webkit-border-radius: 5px;}
+.tab_content .item .video img{width:105px; height:75px; border:1px solid #ccc}
+
+.tab_content .item .foot{clear:left;margin-left:5px;}
+.tab_content .item .head{clear:left;border-bottom:#ccc solid 1px;margin-bottom:3px}
+
+.tab_content .item .actions{float:left;margin-left:10px;width:80%}
+

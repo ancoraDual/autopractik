@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+	{% load static from staticfiles %}
+	<meta charset="UTF-8">
+	<title>Alumnos</title>
+
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+</head>
+
+<body>
+
+	<h1>Acceso a alumnos</h1>
+	<section>
+		<form action="" method="post">
+			{% csrf_token %}
+			{{form.as_ul}}
+			<input type="submit" value="entrar">
+		</form>
+	</section>
+
+
+</body>
+</html>
+
+

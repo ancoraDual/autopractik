@@ -1,0 +1,91 @@
+{% extends "estructura/popup.html" %}
+
+{% block popup_class %} small {% endblock%}
+
+{% block popup_id %}
+	popup_{{vehiculo.id}}
+{% endblock %}
+
+{% block title-popup %} 
+
+	<span class="icon-user"></span> 
+	{% if vehiculo.id == None %} 
+		Añadir nuevo vehiculo 
+	{% else %}
+		Editar vehiculo
+	{% endif %}
+
+{% endblock%}
+
+{% block content-popup %}
+
+<div class="table">
+	
+	<div class="row">
+		
+		<div class="large-12 columns">
+
+			<form method="POST">
+			    {% csrf_token %}
+			
+			<input type="hidden" name="autoescuela" id="autoescuela" value="2">
+			
+			<table class="table">
+			<tbody>	
+				<tr>
+					<td>Tipo:</td>
+					<td>
+						<select name="tipovehiculo" class="form-control" id="tipovehiculo">
+						
+							<option value="-1">Seleccionar</option>						
+							{% for tipovehiculo in tiposvehiculo %}
+
+								{% if vehiculo.tipovehiculo.id == tipovehiculo.id %}
+									<option value="{{tipovehiculo.id}}" selected>{{tipovehiculo.nombre}}</option>
+								{% else %}
+									<option value="{{tipovehiculo.id}}">{{tipovehiculo.nombre}}</option>
+								{% endif%}
+
+							{% endfor %}
+						
+						</select>
+					</td>						
+				<tr>
+					<td>Nombre:</td>
+					<td>
+						<input type="text" class="form-control" name="nombre" id="nombre" placeholder="nombre" value="{{vehiculo.nombre}}">
+					</td>
+				</tr>
+				<tr>
+					<td>Duración</td>
+					<td>
+						<input type="text" class="form-control" name="duracion" id="duracion" placeholder="duración práctica" value="{{vehiculo.duracion}}">
+					</td>
+				</tr>					
+				<tr>
+					<td>Matricula</td>
+					<td>
+						<input type="text" class="form-control" name="matricula" id="matricula" placeholder="matrícula" value="{{vehiculo.matricula}}">
+					</td>
+				</tr>				
+			</tbody>
+			</table>
+
+			</form>
+		</div>
+	</div>
+</div>
+
+<script>
+
+		$(document).ready(function() {
+	
+			$( ".save-btn" ).click(function() {				
+  				var id = $(this).parents(".row-table").data("id");
+				guardarFicha("vehiculos",  "{{ vehiculo.id }}");	
+			});
+		});
+
+</script>
+
+{% endblock %}

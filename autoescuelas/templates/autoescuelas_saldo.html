@@ -1,0 +1,120 @@
+{% extends "master.html" %}
+
+{% block content %}
+
+<div class="list">
+	
+		<div class="top-list">
+			
+		<h1 class="row">
+			<span class="icon icon-coin"></span>
+			<strong>Gestión</strong> del saldo 
+
+			<span class="pull-right"> <strong>45</strong> elementos</span>
+		</h1>			
+
+		</div>
+
+		<div class="row filter">
+
+				<div class="btn actions pull-right add-btn">
+		          	<span class="icon-plus"></span>						
+				</div>
+
+				<input type="text" class="form-control input-search" placeholder="realizar búsqueda">			
+
+
+				<div class="btn btn-primary">
+		          	<span class="icon-search"></span>						
+				</div>			
+
+		</div>
+
+		<div class="row datos">
+			<table id="tabla" class="table table-striped table-bordered">
+			  <thead>
+			    <tr>
+			      <th>Alumno</th>
+			      <th>Fecha</th>
+			      <th>Importe</th>
+			      <th>Concepto</th>
+			      <th>Estado</th>
+			      <th class="actions">
+						<span class="icon-cog"></span>
+			      </th>
+			    </tr>
+			  </thead>
+			  <tbody>
+				{% for saldo in saldos%}
+					
+				<tr id="saldo_{{saldo.id}}" data-id="{{saldo.id}}" class="row-table">
+			      <td>{{ saldo.alumno.apellidos }}, <strong>{{ saldo.alumno.nombre }}</strong></td>
+			      <td>{{ saldo.fecha }}</td>
+			      <td>{{ saldo.importe }} &euro;</td>
+			      <td>{{ saldo.concepto }}</td>
+			      <td>{{ saldo.estado.nombre }}</td>
+			      <td class="actions">
+						<span class="icon-arrow-down"></span>
+						<div id="AccionBox_saldo_{{saldo.id}}" class="accionesBox">
+							<span class="triangulo">&nbsp;</span>
+							<ul>
+								<li class="edit icon-truck">   Editar</li>
+								<li class="send icon-search">   Enviar mail</li>
+								<li class="remove icon-cog">   Suprimir</li>
+								<li class="ocultar icon-arrow-up">   Ocultar</li>
+							</ul>
+						</div>
+			      </td>
+			    </tr>
+
+				{% endfor %}
+		    			    			    
+			  </tbody>
+			</table>
+		</div>
+</div>
+
+		<script>
+		$(document).ready(function() {
+    		
+    		$('#tabla').dataTable(
+    			{
+    				"paging": false,
+    				"info": false,
+    				"bFilter": false
+    			}
+    		);
+
+			$( ".row-table td" ).click(function() {
+				
+				if( ! $(this).hasClass("actions") )
+				{
+					var id = $(this).parent().attr("id");
+					$.ancoraDual.m_despliegaAcciones(id);
+				}
+			});
+
+			
+			$( ".ocultar" ).click(function() {				
+				var id = $(this).parent("tr").parent().attr("id");
+				$.ancoraDual.m_despliegaAcciones(id);
+			});
+
+			$( ".edit" ).click(function() {				
+	  			var id = $(this).parents(".row-table").data("id");
+				editFicha("saldos", id);	
+
+			});
+
+			$( ".add-btn" ).click(function() {	
+				editFicha("saldos", 0);			
+			});			
+
+			$( ".search-btn" ).click(function() {	
+				buscar();			
+			});	
+
+		} );
+		</script>
+
+{% endblock %}

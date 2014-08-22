@@ -1,0 +1,18 @@
+{% extends "dashboard.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+	<span>{{hola}}, uso estilos autoescuela app ? - Aquí está el listado de alumnos + buscador </span>
+	<a href="add/">Añadir alumno</a>
+	<img onclick="quiensoyahora();" src="/static/img/logo.png" alt="My image"/>
+
+	<div class="resultHtml" onclick="getAlumnosHtml();">
+		mostrar alumnos en html
+	</div>
+
+	<div class="resultJson" onclick="getAlumnosJson();">
+		mostrar alumnos en json
+	</div>
+
+{% endblock %}

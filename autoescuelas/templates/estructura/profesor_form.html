@@ -1,0 +1,149 @@
+{% extends "estructura/popup.html" %}
+
+{% block popup_class %} large {% endblock%}
+
+{% block popup_id %}
+	popup_{{profesor.id}}
+{% endblock %}
+
+{% block title-popup %} 
+
+	<span class="icon-user"></span> 
+	{% if profesor.id == None %} 
+		Añadir nuevo profesor 
+	{% else %}
+		Editar profesor
+	{% endif %}
+
+{% endblock%}
+
+{% block content-popup %}
+
+<div class="table">
+	
+	<div class="row">
+		
+		<div class="large-2 columns">
+			
+			<div class="photo">
+				<span class="icon-edit">
+					<span class="icon icon-user"></span>
+				</span>
+			
+				<span class="edit-btn icon-download"></span>
+			</div>
+
+		</div>
+
+		<div class="large-10 columns">
+
+			<form method="POST">
+			    {% csrf_token %}
+			
+			<input type="hidden" name="autoescuela" id="autoescuela" value="2">
+			<table class="table">
+			<tbody>	
+				<tr>
+					<td colspan="3"> <strong> Datos personales </strong></td>
+				</tr>				
+				<tr>
+					<td>Nombre:</td>
+					<td>
+						<input type="text" class="form-control" name="nombre" id="nombre" placeholder="nombre" value="{{profesor.nombre}}">
+					</td>
+					<td>Apellidos</td>
+					<td>
+						<input type="text" class="form-control" name="apellidos" id="apellidos" placeholder="apellidos" value="{{profesor.apellidos}}">
+					</td>
+				</tr>
+				<tr>
+					<td>Email</td>
+					<td colspan="3">
+						<div class="form-group">
+							<span class="left-icon icon-truck"></span>
+							<input type="text" name="email" class="form-control left-spacing" placeholder="correo electrónico" value="{{profesor.email}}">
+							
+						</di>
+					</td>
+				</tr>
+				<tr>
+					<td>NIF/NIE</td>
+					<td>
+						<input type="text" name="nif" id="nif" class="form-control" placeholder="Documento de identidad" value="{{ profesor.nif}}">
+					</td>
+					<td>Contraseña</td>
+					<td>
+						<div class="form-group">
+							<span class="right-icon icon-cog"></span>
+						<input type="password" class="form-control right-spacing" placeholder="actualizar contraseña">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3"> <strong> Datos postales</strong></td>
+				</tr>
+				<tr>
+					<td>Dirección</td>
+					<td colspan="3">
+						<div class="form-group">
+							<span class="left-icon icon-truck"></span>
+							<input name="direccion" id="direccion" type="text" class="form-control left-spacing" placeholder="dirección postal" value="{{profesor.direccion}}">
+							
+						</di>
+					</td>
+				</tr>				
+				<tr>
+					<td>Población:</td>
+					<td>
+						<input type="text" name="poblacion" id="poblacion" class="form-control" placeholder="población" value="{{profesor.poblacion}}">
+					</td>
+					<td>Localidad</td>
+					<td>
+						<input type="text" name="localidad" id="localidad" class="form-control" placeholder="localidad" value="{{profesor.localidad}}">
+					</td>
+				</tr>
+				<tr>
+					<td>Provincia:</td>
+					<td>
+						<select name="provincia" class="form-control" id="provincia">
+						
+							<option value="-1">Seleccionar</option>						
+							{% for provincia in provincias %}
+
+								{% if profesor.provincia.id == provincia.id %}
+									<option value="{{provincia.id}}" selected>{{provincia.nombre}}</option>
+								{% else %}
+									<option value="{{provincia.id}}">{{provincia.nombre}}</option>
+								{% endif%}
+
+							{% endfor %}
+						
+						</select>
+					</td>
+					<td>C. postal</td>
+					<td>
+						<input type="text" name="cp" id="cp" class="form-control" placeholder="cp" value="{{ profesor.cp }}">
+					</td>
+				</tr>				
+			
+			</tbody>
+			</table>
+
+			</form>
+		</div>
+	</div>
+</div>
+
+<script>
+
+		$(document).ready(function() {
+	
+			$( ".save-btn" ).click(function() {				
+  				var id = $(this).parents(".row-table").data("id");
+				guardarFicha("profesores", "{{profesor.id}}");	
+			});
+		});
+
+</script>
+
+{% endblock %}

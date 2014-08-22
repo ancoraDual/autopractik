@@ -1,0 +1,137 @@
+
+/* = Custom datatables
+------------------------- */
+
+.dataTable 
+	thead 
+		.sorting_asc
+			background url('') !important
+			&:after
+				content "\2193"
+				float right
+
+		.sorting_desc
+			background url('') !important
+			&:after
+				content "\2191"
+				float right
+
+.table
+	background transparent !important
+	margin-bottom 0 !important
+
+	tbody
+		tr
+			td
+				vertical-align middle !important // boostrap
+
+				&.event
+					cursor pointer
+
+.form-group
+	position relative
+	margin-bottom 0 !important // boostrap
+	
+	input, select
+		&.left-spacing
+			padding-left 45px
+
+		&.right-spacing
+			padding-right 45px
+
+
+
+	span
+		position absolute
+		top 0px
+		background #ccc
+		color white
+		padding .4em .5em
+		font-size 1.1em
+		height 100%
+
+		&.select
+			cursor pointer
+
+		&.selected
+			background color_hover
+			cursor pointer			
+
+	.left-icon
+		left 0px
+		border-right 1px solid #ddd
+
+	.right-icon
+		right 0px
+		border-left 1px solid #ddd
+
+	
+/* = Desplegable tablas
+------------------------ */
+
+.row-table
+	cursor pointer 
+
+	td 
+		position relative
+		&.actions
+			width 50px
+
+	&:hover
+	
+		td 
+			background color_hover !important
+			color white
+
+
+.row-table-select
+
+	td 
+		background color_hover !important
+		border-bottom 2px solid colorfondo-herramientas !important
+		color white
+
+
+/* = Acciones BOX
+------------------------------------------------------- */
+
+.accionesBox
+	display none
+	background colorfondo-herramientas
+	color white
+	cursor pointer
+	width 170px
+	position absolute
+	z-index 9998
+	top 44px
+	left -125px
+
+	ul
+		background colorfondo-herramientas
+		color white
+		padding .4em .5em
+
+		li 
+			list-style none
+			clear left
+			text-align left
+			margin-bottom 2px
+			font-size 1em
+			padding .4em .5em
+			border-bottom 1px dotted #525252
+
+			&:hover 
+				color color_hover
+
+
+
+	.triangulo
+		position absolute
+		top -9px
+		right 5px 
+		width 20px
+		height 20px
+		border-left 13px solid transparent
+		border-right 13px solid transparent
+		border-bottom 20px solid colorfondo-herramientas
+		z-index 9999

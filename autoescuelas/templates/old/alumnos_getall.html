@@ -1,0 +1,10 @@
+<h2>listado de alumnos</h2>
+
+{{json}}
+
+<ul>
+{% for a in autoescuelas %}
+<li>{{ a.pk }} - {{ a.nombre}} - {{ a.user.username}}</li>
+{% endfor %}
+
+</ul>
